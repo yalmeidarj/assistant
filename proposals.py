@@ -125,16 +125,29 @@ def send_proposals_to_clients(clients, messages, category):
     else:
         print(f'\nNo {category} clients to send proposals to.')
 
+# def send_proposals():
+#     """Send proposals to potential clients."""
+#     category_a = [client for client in potential_clients if client["Category"] == "Plumbing Services"]
+#     category_b = [client for client in potential_clients if client["Category"] == "serviceProvider"]
+
+#     find_duplicates(category_a)
+#     find_duplicates(category_b)
+
+#     send_proposals_to_clients(category_a, messages, "Plumbing Services")
+#     send_proposals_to_clients(category_b, messages, "serviceProvider")
+
+#     print("\nDone!")
 def send_proposals():
     """Send proposals to potential clients."""
-    plumbers = [client for client in potential_clients if client["Category"] == "Plumbing Services"]
-    service_providers = [client for client in potential_clients if client["Category"] == "serviceProvider"]
+    unique_categories = set(client["Category"] for client in potential_clients)
+    categorized_clients = {category: [] for category in unique_categories}
 
-    find_duplicates(plumbers)
-    find_duplicates(service_providers)
+    for client in potential_clients:
+        categorized_clients[client["Category"]].append(client)
 
-    send_proposals_to_clients(plumbers, messages, "Plumbing Services")
-    send_proposals_to_clients(service_providers, messages, "serviceProvider")
+    for category, clients in categorized_clients.items():
+        find_duplicates(clients)
+        send_proposals_to_clients(clients, messages, category)
 
     print("\nDone!")
 
