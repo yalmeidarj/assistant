@@ -4,10 +4,13 @@ LocalBot is a Python script that sends automated email proposals to potential cl
 
 ## Requirements
 
-Python 3.6 or later
-SendGrid Python library
-SendGrid API key
-CSV file containing potential clients
+##### Python 3.6 or later
+
+##### SendGrid Python library
+
+##### SendGrid API key
+
+##### CSV file containing potential clients
 
 ## Account setup
 

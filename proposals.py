@@ -46,9 +46,8 @@ class LocalBot:
             response = sg.send(message)
             return f'Response: {response.status_code}'
         except Exception as e:
-            print(e.to_dict)
-        # except Exception as e:
-        #     return e
+            return e
+
 
 bot = LocalBot()
 
@@ -125,18 +124,7 @@ def send_proposals_to_clients(clients, messages, category):
     else:
         print(f'\nNo {category} clients to send proposals to.')
 
-# def send_proposals():
-#     """Send proposals to potential clients."""
-#     category_a = [client for client in potential_clients if client["Category"] == "Plumbing Services"]
-#     category_b = [client for client in potential_clients if client["Category"] == "serviceProvider"]
 
-#     find_duplicates(category_a)
-#     find_duplicates(category_b)
-
-#     send_proposals_to_clients(category_a, messages, "Plumbing Services")
-#     send_proposals_to_clients(category_b, messages, "serviceProvider")
-
-#     print("\nDone!")
 def send_proposals():
     """Send proposals to potential clients."""
     unique_categories = set(client["Category"] for client in potential_clients)
